@@ -64,13 +64,12 @@ $app->post('/register', function() use ($app) {
             $response = array();
 
             // reading post params
-            $name = $app->request->post('name');
-            $email = $app->request->post('email');
-            $password = $app->request->post('password');
-
+            $name = $app->request->params('name');
+            $email = $app->request->params('email');
+            $password = $app->request->params('password');
+            
             // validating email address
             validateEmail($email);
-
             $db = new DbHandler();
             $res = $db->createUser($name, $email, $password);
 
@@ -314,7 +313,7 @@ function validateEmail($email) {
     $app = \Slim\Slim::getInstance();
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $response["error"] = true;
-        $response["message"] = "Email ".$email." address is not valid";
+        $response["message"] = $email.' is not valid Email address';
         echoRespnse(400, $response);
         $app->stop();
     }

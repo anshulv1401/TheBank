@@ -6,13 +6,13 @@ CREATE TABLE IF NOT EXISTS `users` (
   `userid` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(250) DEFAULT NULL,
   `email` varchar(255) NOT NULL,
-  `password` text NOT NULL,
+  `password_hash` text NOT NULL,
   `api_key` varchar(32) NOT NULL,
   `isactive` int(1) NOT NULL DEFAULT '1',
-  `createdBy` int(11) NULL,
+  `createdBy` int(11) NOT NULL,
   `createdDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modifiedBy` int(11) NULL,
-  `modifiedDate` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `modifiedDate` timestamp NULL,
   PRIMARY KEY (`userid`),
   UNIQUE KEY `email` (`email`)
 );
